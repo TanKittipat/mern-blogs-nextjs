@@ -8,7 +8,7 @@ const Navbar = () => {
   const router = useRouter();
   let user;
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="navbar bg-base-100 shadow-md sticky top-0">
       <div className="navbar-start">
         <Link href="/" className="btn btn-ghost font-semibold text-lg">
           MERN Blogs
