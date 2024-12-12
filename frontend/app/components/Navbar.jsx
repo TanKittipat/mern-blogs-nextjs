@@ -14,6 +14,17 @@ const Navbar = () => {
           MERN Blogs
         </Link>
       </div>
+      {user && (
+        <div className="navbar-center gap-2">
+          <button
+            onClick={() => router.push("/create")}
+            className="btn btn-ghost"
+          >
+            Create new post
+          </button>
+        </div>
+      )}
+
       <div className="navbar-end gap-2">
         {user ? (
           <NavProfile />
