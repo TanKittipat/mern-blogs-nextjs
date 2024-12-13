@@ -12,8 +12,7 @@ export default function Page() {
     setUser((user) => ({ ...user, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       const currentUser = await AuthService.register(
         user.username,
@@ -37,7 +36,7 @@ export default function Page() {
         position: "center",
         icon: "error",
         title: "Register",
-        text: error.data.message,
+        text: error?.response?.data?.message,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -47,7 +46,7 @@ export default function Page() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-rose-400">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <form className="card-body">
+        <div className="card-body">
           <h3 className="card-title">Register</h3>
           <div className="form-control">
             <label className="label">
@@ -85,7 +84,7 @@ export default function Page() {
               Register
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import NavProfile from "./NavProfile";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "../contexts/auth.context";
 
 const Navbar = () => {
   const router = useRouter();
-  let user;
+  let { user, logout } = useAuthContext();
   return (
     <div className="navbar bg-base-100 shadow-md sticky top-0">
       <div className="navbar-start">
@@ -14,20 +14,20 @@ const Navbar = () => {
           MERN Blogs
         </Link>
       </div>
-      {user && (
-        <div className="navbar-center gap-2">
-          <button
-            onClick={() => router.push("/create")}
-            className="btn btn-ghost"
-          >
-            Create new post
-          </button>
-        </div>
-      )}
 
       <div className="navbar-end gap-2">
         {user ? (
-          <NavProfile />
+          <div className="gap-2">
+            <button
+              onClick={() => router.push("/create")}
+              className="btn btn-ghost"
+            >
+              Create new post
+            </button>
+            <button onClick={() => logout()} className="btn btn-ghost">
+              {user.username} Logout{" "}
+            </button>
+          </div>
         ) : (
           <div className="gap-2">
             <button
