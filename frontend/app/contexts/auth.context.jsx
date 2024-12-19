@@ -9,25 +9,37 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Check if it's a client-side environment before accessing cookies
+  // On first render, check for the cookie and set the user
   useEffect(() => {
-    const savedUser = getCookie("user") || null;
-    setUser(savedUser);
-  }, []); // Only run once after initial mount
+    // Try to get the user cookie
+    const savedUser = getCookie("user");
+    if (savedUser) {
+      // If the cookie exists, parse and set the user
+      setUser(JSON.parse(savedUser));
+    }
+  }, []); // This effect runs only on the first render (component mount)
 
-  const login = (user) => setUser(user);
+  const login = (user) => {
+    setUser(user);
+  };
+
   const logout = () => {
     AuthService.logout();
     setUser(null);
+    // Optionally clear the cookie when the user logs out
+    setCookie("user", "", { path: "/", expires: new Date(0) });
   };
 
+  // Whenever the user state changes, update the cookie
   useEffect(() => {
     if (user !== null) {
-      // Only set the cookie if the user is defined
       setCookie("user", JSON.stringify(user), {
         path: "/",
-        expires: new Date(Date.now() + 86400 * 1000), // 1 day expiration
+        expires: new Date(Date.now() + 86400 * 1000), // cookie will expire in 24 hours
       });
+    } else {
+      // If user is null (logged out), clear the cookie
+      setCookie("user", "", { path: "/", expires: new Date(0) });
     }
   }, [user]);
 

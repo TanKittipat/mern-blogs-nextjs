@@ -24,8 +24,12 @@ const Navbar = () => {
             >
               Create new post
             </button>
-            <button onClick={() => logout()} className="btn btn-ghost">
-              {user.username} Logout{" "}
+            <button
+              onClick={() => logout()}
+              className="btn btn-ghost text-red-700"
+            >
+              {" "}
+              Logout<span className="text-black">({user.username})</span>
             </button>
           </div>
         ) : (
