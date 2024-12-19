@@ -1,8 +1,7 @@
 import { getCookie, setCookie, deleteCookie } from "cookies-next/client";
 
 const getLocalAccessToken = () => {
-  const user = getUser();
-  return user?.accessToken;
+  return getCookie("accessToken");
 };
 
 const setUser = (user) => {
