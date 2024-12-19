@@ -61,7 +61,7 @@ export default function Page() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-sky-500 to-emerald-400">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-400">
       <div className="card bg-base-100 w-full max-w-2xl shrink-0 shadow-2xl">
         <div className="card-body">
           <h3 className="card-title">Create a new Post</h3>
