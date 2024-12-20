@@ -21,6 +21,7 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
+    "backend": "file:",
     "multer": "^1.4.5-lts.1"
   }
 }

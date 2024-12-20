@@ -21,3 +21,19 @@ exports.createPost = async (req, res) => {
   });
   res.json({ message: "Create post successfully!", postDoc });
 };
+
+exports.getPosts = async (req, res) => {
+  const posts = await PostModel.find()
+    .populate("author", ["username"])
+    .sort({ createAt: -1 })
+    .limit(20);
+  res.json(posts);
+};
+
+exports.getPostDetail = async (req, res) => {
+  const { id } = req.params;
+  const post = await PostModel.findById({ _id: id }).populate("author", [
+    "username",
+  ]);
+  res.json(post);
+};

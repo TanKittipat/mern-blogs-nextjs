@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import PostServices from "../services/post.service";
+// import Editor from "../components/Editor";
 
 export default function Page() {
   const router = useRouter();
@@ -14,6 +15,9 @@ export default function Page() {
     file: null,
   });
 
+  // const [content, setContent] = useState("");
+  // const editorRef = useRef(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "file") {
@@ -22,6 +26,11 @@ export default function Page() {
       setPostDetail({ ...postDetail, [name]: value });
     }
   };
+
+  // const handleContentChange = (value) => {
+  //   setContent(value);
+  //   setPostDetail((postDetail) => ({ ...postDetail, content: content }));
+  // };
 
   const handleSubmit = async () => {
     try {
@@ -106,6 +115,11 @@ export default function Page() {
               onChange={handleChange}
             ></textarea>{" "}
           </div>
+          {/* <Editor
+            value={content}
+            onChange={handleContentChange}
+            ref={editorRef}
+          /> */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Cover</span>

@@ -8,9 +8,12 @@ const Navbar = () => {
   const router = useRouter();
   let { user, logout } = useAuthContext();
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0">
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50">
       <div className="navbar-start">
-        <Link href="/" className="btn btn-ghost font-semibold text-lg">
+        <Link
+          href="/"
+          className="btn btn-ghost font-semibold text-lg hover:text-rose-800"
+        >
           MERN Blogs
         </Link>
       </div>
@@ -26,7 +29,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => logout()}
-              className="btn btn-ghost text-red-700"
+              className="btn btn-ghost text-rose-800"
             >
               {" "}
               Logout<span className="text-black">({user.username})</span>
